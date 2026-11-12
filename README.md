@@ -89,6 +89,9 @@ Paths are relative to the directory of `composer.json`. Symlinks are ignored, ov
 |------------------|--------------------|
 | `kB`, `MB`, `GB` | `KiB`, `MiB`, `GiB` |
 
+> [!NOTE]
+> `no-dev` skips the files of dev-only packages. Composer's generated files in `vendor/composer/` (autoloader, `installed.json`) still describe the installed set, so they grow with your dev dependencies. Pick a `vendor` limit with that overhead in mind, or measure after `composer install --no-dev`.
+
 Units are case-insensitive. With `gzip` or `brotli`, every file is compressed on its own and the results are summed, just like they would be served over HTTP.
 
 ## 🖥️ Usage
@@ -141,6 +144,7 @@ jobs:
 composer install
 composer test   # PHPUnit
 composer stan   # PHPStan level 8
+composer size-limit   # the plugin checks its own size budget (see extra.size-limit)
 ```
 
 ## 📄 License

@@ -24,13 +24,18 @@
         }
     },
     "extra": {
-        "class": "Core23\\SizeLimit\\Plugin"
+        "class": "Core23\\SizeLimit\\Plugin",
+        "size-limit": [
+            { "name": "Source", "path": "src", "limit": "25 kB" },
+            { "name": "Source (gzip)", "path": "src", "limit": "8 kB", "compression": "gzip" }
+        ]
     },
     "config": {
         "sort-packages": true
     },
     "scripts": {
         "test": "phpunit",
-        "stan": "phpstan analyse"
+        "stan": "phpstan analyse",
+        "size-limit": "@php bin/size-limit"
     }
 }

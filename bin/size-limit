@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * Runs this plugin's own `size-limit` command against this repository.
+ *
+ * Composer does not load the root package as a plugin, so `composer size-limit`
+ * is wired to this script via "scripts" in composer.json.
+ */
+
+use Composer\Console\Application;
+use Core23\SizeLimit\CommandProvider;
+use Symfony\Component\Console\Input\ArgvInput;
+
+require __DIR__.'/../vendor/autoload.php';
+
+$application = new Application();
+foreach ((new CommandProvider())->getCommands() as $command) {
+    method_exists($application, 'addCommand') ? $application->addCommand($command) : $application->add($command);
+}
+
+exit($application->run(new ArgvInput(['size-limit', 'size-limit', ...array_slice($argv, 1)])));
