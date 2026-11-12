@@ -1,0 +1,36 @@
+{
+    "name": "core23/composer-size-limit",
+    "description": "Composer plugin to enforce size limits for files, vendor and build artifacts, like npm size-limit.",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "keywords": ["composer", "plugin", "size-limit", "size", "ci"],
+    "require": {
+        "php": "^8.2",
+        "composer-plugin-api": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.7",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core23\\SizeLimit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Core23\\SizeLimit\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "class": "Core23\\SizeLimit\\Plugin"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit",
+        "stan": "phpstan analyse"
+    }
+}
